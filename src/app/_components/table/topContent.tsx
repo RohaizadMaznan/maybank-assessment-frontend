@@ -110,11 +110,10 @@ export default function TopContentTable({
           </Button>
         </Tooltip>
 
-        <Tooltip content="Clear filter(s)" placement="bottom">
+        <Tooltip content="Clear" placement="bottom">
           <Button
             onClick={() => {
               reset();
-              window.location.reload();
             }}
             color="danger"
             isDisabled={!watch("search")}

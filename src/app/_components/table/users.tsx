@@ -8,14 +8,12 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  getKeyValue,
   Tooltip,
   Button,
 } from "@nextui-org/react";
 import users from "@/constants/users.json";
 import TableActions from "./actions";
 import TopContentTable from "./topContent";
-import { capitalize } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { Copy } from "lucide-react";
 
@@ -27,6 +25,7 @@ export const INITIAL_VISIBLE_COLUMNS = [
   "phone",
   "skillsets",
   "hobby",
+  "actions",
 ];
 
 export default function UserTable({}: Props) {
@@ -58,6 +57,10 @@ export default function UserTable({}: Props) {
       {
         key: "hobby",
         label: "HOBBY",
+      },
+      {
+        key: "actions",
+        label: "",
       },
     ];
 
