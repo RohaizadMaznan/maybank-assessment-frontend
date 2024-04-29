@@ -1,10 +1,14 @@
 "use client";
 
+import ENDPOINTS from "@/lib/apiUrls";
+import api from "@/lib/interceptor";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Image, Input, Tooltip } from "@nextui-org/react";
+import { useMutation } from "@tanstack/react-query";
 import { Eye, EyeOff, Info } from "lucide-react";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { z } from "zod";
 
 type Props = {};
@@ -46,8 +50,20 @@ export default function RegisterForm({}: Props) {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log("submit register", data);
+    mutation.mutate(data);
   };
+
+  const mutation = useMutation({
+    mutationFn: async (data: z.infer<typeof formSchema>) => {
+      await api.post(ENDPOINTS.postExample(), data);
+    },
+    onSuccess: () => {
+      toast.success("Account is successfully register.");
+    },
+    onError: (errors) => {
+      toast.error(errors.message);
+    },
+  });
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -159,8 +175,8 @@ export default function RegisterForm({}: Props) {
               type="submit"
               color="primary"
               fullWidth
-              isLoading={isSubmitting}
-              isDisabled={isSubmitting || !isValid}
+              isLoading={mutation.isPending}
+              isDisabled={mutation.isPending || !isValid}
             >
               Register me
             </Button>

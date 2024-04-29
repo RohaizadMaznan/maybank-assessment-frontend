@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "username": "rohaizadmaznan",
+        "email": "rohaizadmaznan@gmail.com",
+        "phone": "0197070023",
+        "password": "rohaizad123",
+        "skillsets": ["NextJS", "Reactjs", "API Integration", "Frontend"],
+        "hobby": ["mountaining", "hiking", "camping"]
+    }
+]

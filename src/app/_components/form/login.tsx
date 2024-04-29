@@ -1,11 +1,16 @@
 "use client";
 
+import ENDPOINTS from "@/lib/apiUrls";
+import api from "@/lib/interceptor";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Image, Input, Tooltip } from "@nextui-org/react";
+import { useMutation } from "@tanstack/react-query";
 import { Eye, EyeOff, Info } from "lucide-react";
 import Link from "next/link";
+import { redirect, useRouter } from "next/navigation";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { z } from "zod";
 
 type Props = {};
@@ -21,6 +26,7 @@ const formSchema = z.object({
 });
 
 export default function LoginForm({}: Props) {
+  const router = useRouter();
   const [isVisiblePass, setVisiblePass] = React.useState(false);
   const toggleVisiblePass = () => setVisiblePass(!isVisiblePass);
 
@@ -33,8 +39,21 @@ export default function LoginForm({}: Props) {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log("submit login", data);
+    mutation.mutate(data);
   };
+
+  const mutation = useMutation({
+    mutationFn: async (data: z.infer<typeof formSchema>) => {
+      await api.post(ENDPOINTS.postExample(), data);
+    },
+    onSuccess: () => {
+      toast.success("Welcome back.");
+      router.push("/dashboard/users");
+    },
+    onError: (errors) => {
+      toast.error(errors.message);
+    },
+  });
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

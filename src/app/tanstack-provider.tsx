@@ -34,7 +34,7 @@ const TanstackProvider = ({ children }: { children: React.ReactNode }) => {
       <ReactQueryDevtools
         initialIsOpen={false}
         position="top"
-        buttonPosition="top-right"
+        buttonPosition="bottom-right"
       />
     </QueryClientProvider>
   );
