@@ -32,6 +32,7 @@ import CreateUserForm from "../form/createUser";
 import users from "@/constants/users.json";
 import toast from "react-hot-toast";
 import ChangePasswordForm from "../form/changePassword";
+import { copyToClipboard } from "@/lib/utils";
 
 type Props = {
   userId: number;
@@ -44,12 +45,6 @@ export default function TableActions({ userId }: Props) {
   const deleteUserModal = useDisclosure();
 
   const getUser = users.find((user) => user.id === userId);
-
-  const copyToClipboard = async (e: any) => {
-    e.stopPropagation();
-    await navigator.clipboard.writeText("example@simpleai.sg");
-    toast.success("Copied", { id: "copyToClipboard" });
-  };
 
   return (
     <div className="relative flex justify-end items-center gap-2">
@@ -147,7 +142,9 @@ export default function TableActions({ userId }: Props) {
                               <Button
                                 isIconOnly
                                 size="sm"
-                                onClick={async (e) => copyToClipboard(e)}
+                                onClick={async (e) =>
+                                  copyToClipboard(e, getUser?.email)
+                                }
                               >
                                 <Copy className="min-w-3 h-3" />
                               </Button>

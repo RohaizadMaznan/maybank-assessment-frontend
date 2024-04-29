@@ -8,6 +8,7 @@ import {
   DropdownTrigger,
   Input,
   Tooltip,
+  cn,
 } from "@nextui-org/react";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -143,7 +144,13 @@ export default function TopContentTable({
             onSelectionChange={setVisibleColumns}
           >
             {columns.map((column) => (
-              <DropdownItem key={column.key} className="capitalize">
+              <DropdownItem
+                key={column.key}
+                className={cn(
+                  "capitalize",
+                  column.key === "actions" && "hidden"
+                )}
+              >
                 {capitalize(column.label)}
               </DropdownItem>
             ))}

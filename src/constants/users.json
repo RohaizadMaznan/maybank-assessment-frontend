@@ -3,9 +3,99 @@
         "id": 1,
         "username": "rohaizadmaznan",
         "email": "rohaizadmaznan@gmail.com",
-        "phone": "0197070023",
-        "password": "rohaizad123",
+        "phone": "+60197070023",
+        "password": "P@ssw0rd",
         "skillsets": ["NextJS", "Reactjs", "API Integration", "Frontend"],
         "hobby": ["mountaining", "hiking", "camping"]
+    },
+    {
+        "id": 2,
+        "username": "heatherjuarez",
+        "email": "heatherjuarez@gmail.com",
+        "phone": "+601234232673",
+        "password": "P@ssw0rd",
+        "skillsets": ["Reactjs", "Problem Solving", "Time Management"],
+        "hobby": ["camping", "hiking"]
+    },
+    {
+        "id": 3,
+        "username": "sybilaas",
+        "email": "sybilaas@sundram.com",
+        "phone": "+60151885014",
+        "password": "P@ssw0rd",
+        "skillsets": ["Vuejs", "Leadership", "Data Scientist"],
+        "hobby": ["snowboarding", "climbing", "diving"]
+    },
+    {
+        "id": 4,
+        "username": "janeauun",
+        "email": "janeauun@yeow.biz",
+        "phone": "+60153924152",
+        "password": "P@ssw0rd",
+        "skillsets": ["Astro.js", "Data entry"],
+        "hobby": ["cycling", "hiking"]
+    },
+    {
+        "id": 5,
+        "username": "johnteoh",
+        "email": "qiteh.rasiah@gmail.com",
+        "phone": "+6062535024",
+        "password": "P@ssw0rd",
+        "skillsets": ["Full-stack developer"],
+        "hobby": ["camping", "hiking"]
+    },
+    {
+        "id": 6,
+        "username": "johndhon",
+        "email": "izaid@gmail.com",
+        "phone": "+6055595982",
+        "password": "P@ssw0rd",
+        "skillsets": ["Network & Security", "White hat"],
+        "hobby": ["swimming", "climbing"]
+    },
+    {
+        "id": 7,
+        "username": "muhameat",
+        "email": "norshuhailah.lo@namasivayam.com",
+        "phone": "+60129770659",
+        "password": "P@ssw0rd",
+        "skillsets": ["Multimedia", "Designs", "Photoshop", "Adobe packages"],
+        "hobby": ["cooking", "climbing"]
+    },
+    {
+        "id": 8,
+        "username": "zluo",
+        "email": "zluo@yahoo.com",
+        "phone": "+6015943 4810",
+        "password": "P@ssw0rd",
+        "skillsets": ["Software architecture", "SDLC"],
+        "hobby": ["video games", "climbing"]
+    },
+    {
+        "id": 9,
+        "username": "syarafina92",
+        "email": "syarafina92@yahoo.com",
+        "phone": "+60152376373",
+        "password": "P@ssw0rd",
+        "skillsets": ["Reactjs"],
+        "hobby": ["exhibition tour", "climbing"]
+    },
+    {
+        "id": 10,
+        "username": "sham85",
+        "email": "sham85@gmail.com",
+        "phone": "+6069094012",
+        "password": "P@ssw0rd",
+        "skillsets": ["Software engineer", "Mobile developer"],
+        "hobby": ["island hopping", "climbing"]
+    },
+    {
+        "id": 11,
+        "username": "sekhar.peter",
+        "email": "sekhar.peter@hotmail.com",
+        "phone": "+60196879843",
+        "password": "P@ssw0rd",
+        "skillsets": ["Web application developer"],
+        "hobby": ["downhill bike", "camping"]
     }
 ]

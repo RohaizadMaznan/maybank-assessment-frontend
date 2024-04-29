@@ -14,8 +14,9 @@ import {
 import users from "@/constants/users.json";
 import TableActions from "./actions";
 import TopContentTable from "./topContent";
-import toast from "react-hot-toast";
 import { Copy } from "lucide-react";
+import BottomContentTable from "./bottomContent";
+import { copyToClipboard, paginate } from "@/lib/utils";
 
 type Props = {};
 
@@ -31,10 +32,14 @@ export const INITIAL_VISIBLE_COLUMNS = [
 export default function UserTable({}: Props) {
   const [selectedKeys, setSelectedKeys] = React.useState<any>(new Set([]));
   const [filterValue, setFilterValue] = React.useState<{ search?: string }>({});
+  const [rowPerPage, setRowPerPage] = React.useState<string>("10");
   const [currentPage, setCurrentPage] = React.useState(1);
   const [visibleColumns, setVisibleColumns] = React.useState<any>(
     new Set(INITIAL_VISIBLE_COLUMNS)
   );
+
+  const currentPageItems = paginate(users, currentPage, rowPerPage);
+  const lastPagePagination = currentPageItems.length / Number(rowPerPage);
 
   const columns = useMemo(() => {
     const baseColumns = [
@@ -80,11 +85,6 @@ export default function UserTable({}: Props) {
 
     switch (columnKey) {
       case "email":
-        const copyToClipboard = async (e: any) => {
-          e.stopPropagation();
-          await navigator.clipboard.writeText("example@simpleai.sg");
-          toast.success("Copied", { id: "copyToClipboard" });
-        };
         return (
           <div className="flex items-center">
             <div className="bg-default-100 rounded-xl px-4 py-1 w-auto flex items-center justify-between space-x-3">
@@ -94,7 +94,7 @@ export default function UserTable({}: Props) {
                   isIconOnly
                   variant="light"
                   size="sm"
-                  onClick={async (e) => copyToClipboard(e)}
+                  onClick={async (e) => copyToClipboard(e, cellValue)}
                 >
                   <Copy className="min-w-3 h-3" />
                 </Button>
@@ -128,22 +128,42 @@ export default function UserTable({}: Props) {
     [visibleColumns, setCurrentPage, setVisibleColumns, columns]
   );
 
+  const bottomContent = React.useMemo(
+    () => (
+      <BottomContentTable
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        rowPerPage={rowPerPage}
+        setRowPerPage={setRowPerPage}
+        users={users}
+        lastPagePagination={lastPagePagination}
+      />
+    ),
+    [currentPage, setCurrentPage, rowPerPage, setRowPerPage, lastPagePagination]
+  );
+
   return (
     <div>
       <Table
         aria-label="Users table"
+        selectionMode="multiple"
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
         topContent={topContent}
         topContentPlacement="outside"
+        bottomContent={bottomContent}
+        bottomContentPlacement="outside"
+        classNames={{
+          wrapper: "h-[calc(100vh-410px)]",
+        }}
       >
         <TableHeader columns={headerColumns}>
           {(column: { label: string; key: string; sortable?: boolean }) => (
             <TableColumn key={column.key}>{column.label}</TableColumn>
           )}
         </TableHeader>
-        <TableBody items={users}>
-          {(item) => (
+        <TableBody items={currentPageItems}>
+          {(item: { id: number }) => (
             <TableRow key={item.id}>
               {(columnKey) => (
                 <TableCell>{renderCell(item, columnKey)}</TableCell>
