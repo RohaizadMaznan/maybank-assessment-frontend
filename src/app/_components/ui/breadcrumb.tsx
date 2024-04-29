@@ -50,7 +50,7 @@ export default function Breadcrumb({}: Props) {
                   </p>
                 </ModalHeader>
                 <ModalBody>
-                  <CreateUserForm onClose={onClose} />
+                  <CreateUserForm mode="create" onClose={onClose} />
                 </ModalBody>
                 <ModalFooter>
                   <Button color="danger" variant="light" onPress={onClose}>
